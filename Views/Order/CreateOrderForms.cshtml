@@ -1,0 +1,27 @@
+﻿@model CreateOrderFormsModel
+
+<h2>Select your pizzas</h2>
+
+<form asp-action="CreateOrderForms" method="post">
+    @for (int i = 0; i < Model.AvailableProducts.Count; i++)
+    {
+        <div>
+            <label>@Model.AvailableProducts[i].Name</label>
+            <input type="hidden" name="productIds" value="@Model.AvailableProducts[i].Id" />
+            <input type="number" name="quantities" value="0" min="0" max="@Model.Quantity" />
+        </div>
+    }
+
+    <input type="hidden" name="quantity" value="@Model.Quantity" />
+    <button type="submit">Submit</button>
+</form>
+
+@if (!ViewData.ModelState.IsValid)
+{
+    <div class="text-danger">
+        @foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+        {
+            <p>@error.ErrorMessage</p>
+        }
+    </div>
+}

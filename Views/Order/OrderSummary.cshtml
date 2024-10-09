@@ -1,0 +1,25 @@
+﻿@model List<LR6.Models.OrderProduct>
+
+<h1>Order Summary</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var orderedProduct in Model)
+        {
+            <tr>
+                <td>@orderedProduct.Product.Name</td>
+                <td>@orderedProduct.Quantity</td>
+                <td>@(orderedProduct.Quantity * orderedProduct.Product.Price)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<h2>Total: @Model.Sum(p => p.Quantity * p.Product.Price)</h2>

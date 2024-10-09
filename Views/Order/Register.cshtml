@@ -1,0 +1,11 @@
+﻿@model User
+
+<form asp-action="Register" method="post">
+    <label for="Name">Name</label>
+    <input type="text" id="Name" name="Name" required />
+
+    <label for="BirthDate">Birth Date</label>
+    <input type="date" id="BirthDate" name="BirthDate" required />
+
+    <button type="submit">Register</button>
+</form>
